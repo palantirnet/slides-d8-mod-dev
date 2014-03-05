@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="612px" height="242px" viewBox="0 0 612 242" enable-background="new 0 0 612 242" xml:space="preserve">
+<path fill="#E1EBEF" d="M100.075,95.996h77.35c9.15,0,16.575,9.901,16.575,22.1c0,12.2-7.425,22.099-16.575,22.099h-77.35
+	c-9.15,0-16.575-9.899-16.575-22.099C83.5,105.897,90.925,95.996,100.075,95.996"/>
+<path fill="#E1EBEF" d="M434.175,95.996h77.35c9.149,0,16.575,9.901,16.575,22.1c0,12.2-7.426,22.099-16.575,22.099h-77.35
+	c-9.149,0-16.575-9.899-16.575-22.099C417.6,105.897,425.025,95.996,434.175,95.996"/>
+<text transform="matrix(1 0 0 1 111.9185 122.6035)" fill="#435152" font-family="Proxima Nova" font-weight="bold" font-size="14">Request</text>
+<g>
+	<text transform="matrix(1 0 0 1 442.9199 122.6035)" fill="#435152" font-family="Proxima Nova" font-weight="bold" font-size="14">Response</text>
+</g>
+<path fill="#E1EBEF" d="M256.6,122.93c-21.819-4.833-13.118-45.527,21.688-38.583c3.229-13.535,43.704-11.338,43.438,0
+	c25.38-14.502,57.812,14.415,36.059,28.916c26.104,7.031-0.33,44.912-21.753,38.583c-1.715,10.547-40.013,14.238-43.374,0
+	C270.971,167.051,225.751,143.672,256.6,122.93L256.6,122.93z"/>
+<g>
+	<text transform="matrix(1 0 0 1 269.377 122.6035)" fill="#435152" font-family="Proxima Nova" font-weight="bold" font-size="14">Your server</text>
+</g>
+<line fill="none" stroke="#E1EBEF" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" x1="194.5" y1="118.596" x2="238.966" y2="118.596"/>
+<path fill="#E1EBEF" d="M246.966,118.596l-8-3v6L246.966,118.596z"/>
+<path fill="none" stroke="#E1EBEF" stroke-miterlimit="10" d="M246.966,118.596l-8-3v6L246.966,118.596z"/>
+<line fill="none" stroke="#E1EBEF" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" x1="366.549" y1="118.596" x2="409.6" y2="118.596"/>
+<path fill="#E1EBEF" d="M417.6,118.596l-8-3v6L417.6,118.596z"/>
+<path fill="none" stroke="#E1EBEF" stroke-miterlimit="10" d="M417.6,118.596l-8-3v6L417.6,118.596z"/>
+</svg>

@@ -31,9 +31,7 @@
   </head>
 
   <body>
-
     <div class="reveal">
-
       <!-- Any section element inside of this container is displayed as a slide -->
       <div class="slides">
         <section>
@@ -53,6 +51,464 @@
             <li>Advisor, Drupal Association</li>
             <li>Loveable pedant</li>
           </ul>
+        </section>
+        <section>
+          <h1>Goals</h1>
+          <h3>SWBAT*</h3>
+          <ul>
+            <li class="fragment">Trace the path of a Drupal request and response</li>
+            <li class="fragment">Create routes and controllers for requests</li>
+            <li class="fragment">Create blocks</li>
+            <li class="fragment">Store default module settings</li>
+            <li class="fragment">Create forms and pages</li>
+            <li class="fragment">Store and manage application state</li>
+          </ul>
+        </section>
+        <section>
+          <section>
+            <h1>Understanding Drupal 8</h1>
+          </section>
+          <section>
+            <h2>Drupal 7</h2>
+            <h3>PHP 4 application</h3>
+          </section>
+
+          <section>
+            <h2>Drupal 8</h2>
+            <h3>PHP 5.3 application</h3>
+            <p class="fragment">We ported Drupal to a new language</p>
+          </section>
+
+          <section>
+            <h2>What does that mean?</h2>
+            <ul>
+              <li class="fragment">The end of "Not Invented Here"</li>
+              <li class="fragment">We have catching up to do</li>
+            </ul>
+          </section>
+
+          <section>
+            <h2>Playing nice with others</h2>
+            <ul>
+              <li class="fragment">Namespacing</li>
+              <li class="fragment">Interfaces</li>
+              <li class="fragment">Annotations</li>
+              <li class="fragment">Plugins</li>
+              <li class="fragment">YAML</li>
+            </ul>
+          </section>
+
+          <section>
+            <h2>Namespacing</h2>
+            <ul>
+              <li class="fragment">PSR-0
+              <li class="fragment">A fully-qualified namespace and class must have the following structure:<br />
+              <code>\&lt;Vendor Name&gt;\(&lt;Namespace&gt;)*\&lt;Class Name&gt;</code></li>
+              <li class="fragment">Allows standard autoloading</li>
+              <li class="fragment">See <a href="https://github.com/php-fig/fig-standards">https://github.com/php-fig/fig-standards</a></li>
+            </ul>
+          </section>
+
+          <section>
+            <pre><code class="php">
+namespace Drupal\violator_block\Plugin\Block;
+
+use Drupal\block\BlockBase;
+use Drupal\Core\Session\AccountInterface;
+use Drupal\Core\KeyValueStore\StateInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
+use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
+use Drupal\violator_block\Weather;
+use Drupal\Core\Config\Config;
+
+</code></pre>
+          </section>
+
+          <section>
+            <h2>Interfaces</h2>
+            <ul>
+              <li class="fragment">Separate design from implementation</li>
+              <li class="fragment">Allow objects to be mocked (testable)</li>
+              <li class="fragment">Allow implementations to be swapped</li>
+              <li class="fragment">Separate your library code from your Drupal code</li>
+            </ul>
+          </section>
+
+          <section>
+            <pre><code class="php">/**
+ * @file
+ * Definition of Drupal\domain\DomainInterface.
+ */
+
+namespace Drupal\domain;
+use Drupal\Core\Entity\ContentEntityInterface;
+
+interface DomainInterface extends ContentEntityInterface {
+
+  public function validate();
+  public function checkResponse();
+  public function isActive();
+  public function isDefault();
+
+}</code></pre>
+          </section>
+
+          <section>
+            <h2>Annotations</h2>
+            <ul>
+              <li class="fragment">Docblocks as class definitions</li>
+              <li class="fragment">Self-documenting</li>
+              <li class="fragment">Replaces custom <code>hook_*_info()</code></li>
+            </ul>
+          </section>
+
+          <section>
+            <pre><code class="php">
+/**
+ * Provides an emergency violator block.
+ *
+ * @Block(
+ *   id = "violator_block_message",
+ *   admin_label = @Translation("Emergency violator"),
+ *   category = @Translation("System")
+ * )
+ */
+class EmergencyViolatorBlock extends BlockBase implements ContainerFactoryPluginInterface {
+ // ...
+}</code></pre>
+          </section>
+
+          <section>
+            <h2>Plugins</h2>
+            <ul>
+              <li class="fragment">Configurable, user-swappable logic</li>
+              <li class="fragment">Separation of concerns</li>
+              <li class="fragment">Autoloading</li>
+              <li class="fragment">Encourages libraries</li>
+              <li class="fragment">See Views module in Drupal 7</li>
+            </ul>
+          </section>
+
+          <section>
+            <pre><code class="php">class DomainServerBlock extends BlockBase {
+  /**
+   * Overrides \Drupal\block\BlockBase::access().
+   */
+  public function access() {
+    Drupal::request()->attributes->get('_account')
+      ->hasPermission('access content');
+  }
+
+  /**
+   * Build the output.
+   */
+  public function build() {
+    return 'foo';
+  }
+}</code></pre>
+          </section>
+
+          <section>
+            <h2>YAML*</h2>
+            <p><small>* Yes, this isn't a PHP thing</small></p>
+            <ul>
+              <li class="fragment">Generic syntax for complex data</li>
+              <li class="fragment">Portable</li>
+              <li class="fragment">Core of the CMI</li>
+            </ul>
+          </section>
+
+          <section>
+            <h2>module.info.yml</h2>
+           <pre><code class="yaml">name: Domain
+description: 'Creates domain records within a Drupal installation.'
+type: module
+package: Domain
+version: VERSION
+core: 8.x
+dependencies:
+  - options
+  - entity_reference
+configure: admin/structure/domain</code></pre>
+          </section>
+
+          <section>
+          <h2>module.routing.yml</h2>
+          <pre><code class="yaml long_code">domain_admin:
+  pattern: 'admin/structure/domain'
+  defaults:
+    _content: '\Drupal\domain\Controller\DomainController::adminOverview'
+  requirements:
+    _permission: 'administer domains'</code></pre>
+          </section>
+
+          <section>
+            <h2>views.view.module.<br />view_name.yml</h2>
+            <pre><code class="yaml">base_field: domain_id
+base_table: domain
+core: 8.x
+description: ''
+status: '1'
+display:
+  default:
+    display_plugin: default
+    id: default
+    display_title: Master
+    position: ''
+    display_options:
+      access:
+        type: perm
+        options:
+          perm: 'administer domains'
+      cache:
+        type: none
+      query:
+        type: views_query</code></pre>
+          </section>
+
+          <section>
+            <h1>Lots of changes</h1>
+          </section>
+
+          <section>
+            <h2>Module structure</h2>
+            <pre><code>
+mymodule/
+  mymodule.info.yml
+  mymodule.module
+  mymodule.routing.yml
+    lib/
+      Drupal/
+        Controller/
+          MyModuleController.php
+        Plugin/
+          Action/
+            MyModuleCreateRainbows.php
+            MyModuleGetPuppies.php
+          Block/
+            MyModuleHelloWorldBlock.php
+            MyModuleGoodbyeCruelWorldBlock.php</code></pre>
+          </section>
+
+          <section>
+            <h2 style="color: #a31; font-size: 256px; text-shadow: 1px 1px 1px #800;">Don't Panic</h2>
+          </section>
+
+        </section>
+        <section>
+          <section>
+            <h1>Understanding the web</h1>
+          </section>
+          <section>
+            <h3>PHP 4 architecture</h3>
+            <img src="assets/architecture-php4.svg"  class="graphic" />
+          </section>
+          <section>
+            <h3>HTTP Architecture</h3>
+            <img src="assets/architecture-http.svg" class="graphic"/>
+          </section>
+          <section>
+            <h3>Symfony/HttpKernel architecture</h3>
+            <img src="assets/architecture-httpkernelinterface.svg" class="graphic"/>
+          </section>
+          <section>
+            <pre class="long_code"><code class="php">interface HttpKernelInterface {
+  const MASTER_REQUEST = 1;
+  const SUB_REQUEST = 2;
+
+  /**
+   * Handles a Request to convert it to a Response.
+   *
+   * @param Request $request A Request instance
+   * @param integer $type    The type of the request
+   * @param Boolean $catch Whether to catch exceptions or not
+   *
+   * @return Response A Response instance
+   */
+  public function handle(Request $request, $type = self::MASTER_REQUEST, $catch = true);
+}
+            </code></pre>
+          </section>
+          <section>
+            <h3>HttpKernel pipeline</h3>
+            <img src="assetsimg/architecture-httpkernel.svg" class="graphic"/>
+          </section>
+        </section>
+        <section>
+          <section>
+            <h2>Controllers</h2>
+            <p class="fragment roll-in">(The concept formerly known as page callbacks and now represented by a PHP callable...)</p>
+          </section>
+          <section>
+            <pre><code class="php">use Symfony\Component\HttpFoundation\Response;
+
+class MyControllers {
+
+  public function hello() {
+    return new Response('&lt;html>&lt;body>Hello World&lt;/body>&lt;/html>');
+  }
+}
+</code></pre>
+          </section>
+          <section>
+            <pre><code class="php">use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\JsonResponse;
+
+class MyControllers {
+
+  public function hello() {
+    return new Response('&lt;html>&lt;body>Hello World&lt;/body>&lt;/html>');
+  }
+
+  public function helloJson() {
+    $data['Hello'] = 'World';
+    return new JsonResponse($data);
+  }
+}
+</code></pre>
+          </section>
+          <section>
+            <pre><code class="php">use Symfony\Component\HttpFoundation\StreamedResponse;
+
+class MyControllers {
+
+  public function helloStream() {
+    $response = new StreamedResponse();
+    $response->setCallback(function () {
+      echo 'Hello World';
+      flush();
+      sleep(2);
+      echo 'Hello Universe';
+      flush();
+    });
+  }
+}
+</code></pre>
+            <aside class="notes">
+              Segue: The most common example is just returning a file off disk...
+            </aside>
+          </section>
+          <section>
+            <pre><code class="php">use Symfony\Component\HttpFoundation\BinaryFileResponse;
+
+class MyControllers {
+
+  public function helloFile() {
+    $response = new BinaryFileResponse('hello_world.png');
+
+    // Do this in settings.php if you know you're on nginx or
+    // have the Apache module enabled.
+    $response::trustXSendfileTypeHeader();
+
+    return $response;
+  }
+}
+</code></pre>
+            <aside class="notes">
+              Drupalers wrote that. :-)
+            </aside>
+
+          </section>
+          <section>
+            <pre><code class="php">use Symfony\Component\HttpFoundation\Response;
+
+class MyControllers {
+
+  public function helloEmpty() {
+    $this->doSomething();
+
+    $response = new Response();
+    $response->setStatusCode(204);
+    return $response;
+  }
+}
+</code></pre>
+          </section>
+          <section>
+            <pre><code class="php">use Symfony\Component\HttpFoundation\Response;
+
+class MyControllers {
+
+  public function helloCsv() {
+    foreach ($some_data as $record) {
+      $lines[] = implode(', ', $record);
+    }
+
+    $response = new Response(implode("\n", $lines));
+    $response->headers->set('Content-Type', 'text/csv');
+    return $response;
+  }
+}
+</code></pre>
+            <aside class="notes">
+              <ul>
+                <li>Tip: Could we combine this with a StreamedResponse to send records on the fly? How?</li>
+              </ul>
+            </aside>
+          </section>
+          <section>
+            <pre><code class="php">use Symfony\Component\HttpFoundation\Response;
+
+class MyControllers {
+
+  public function helloCoffee() {
+    if ($this->isTeapot()) {
+      $response = new Response("Don't put coffee in me", 418);
+      return $response;
+    }
+
+    // ...
+  }
+}
+</code></pre>
+          </section>
+          <section>
+            <pre><code class="php">class MyControllers {
+
+  public function helloString() {
+    return "The view event will turn this into a response.";
+  }
+}
+</code></pre>
+          </section>
+          <section>
+            <pre><code class="php">class MyControllers {
+
+  public function helloDrupal() {
+    return array(
+      '#theme' => 'a_drupal_render_array',
+      '#description' => 'Those still exist.',
+    );
+  }
+}
+</code></pre>
+          </section>
+          <section>
+            <code>/hello/world/{from}/{to}</code>
+            <pre><code class="php">class MyControllers {
+
+  public function helloDrupal($to, $from, Request $request) {
+    return array(
+      '#theme' => 'love_letter',
+      '#from' => $from,
+      '#to' => $to,
+    );
+  }
+}
+</code></pre>
+          </section>
+          <section>
+          <h3>module.routing.yml</h3>
+          <pre><code class="yaml long_code">hello.world:
+  path: '/hello/world/{from}/{to}'
+  defaults:
+    _content: '\Drupal\mymodule\Controller\HelloController::helloWorld'
+  requirements:
+    _permission: 'access content'
+    from: \s+
+    to: \s+
+</code></pre>
+          </section>
         </section>
 
         <section>

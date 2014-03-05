@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="612px" height="212px" viewBox="0 0 612 212" enable-background="new 0 0 612 212" xml:space="preserve">
+<path fill="#E1EBEF" d="M399,68h148v57.6c-44.4-7.199-103.6,21.602-148,7.2V68z"/>
+<text transform="matrix(1 0 0 1 447.8115 97.8984)" fill="#435152" font-family="Proxima Nova" font-weight="bold" font-size="14">header( )</text>
+<text transform="matrix(1 0 0 1 415.373 114.6982)" fill="#435152" font-family="Proxima Nova" font-weight="bold" font-size="14">print $page_string </text>
+<path fill="#E1EBEF" d="M82.8,71.562h138.4l-34.6,64.875H48.2L82.8,71.562z"/>
+<text transform="matrix(1 0 0 1 101.3325 101.5)" fill="#435152" font-family="Proxima Nova" font-weight="bold" font-size="14">Bunch o&apos;</text>
+<text transform="matrix(1 0 0 1 86.0654 118.2998)" fill="#435152" font-family="Proxima Nova" font-weight="bold" font-size="14">super-globals</text>
+<text transform="matrix(1 0 0 1 172.4971 101.5)" fill="#435152" font-family="'ProximaNova-Regular'" font-size="12"> </text>
+<path fill="#E1EBEF" d="M264.8,135.579V73.42c0-4.289,17.405-7.77,38.85-7.77s38.85,3.48,38.85,7.77v62.159
+	c0,4.29-17.404,7.771-38.85,7.771S264.8,139.869,264.8,135.579"/>
+<path fill="none" stroke="#435152" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M264.8,135.579V73.42
+	c0-4.289,17.405-7.77,38.85-7.77s38.85,3.48,38.85,7.77v62.159c0,4.29-17.404,7.771-38.85,7.771S264.8,139.869,264.8,135.579
+	 M264.8,73.42c0,4.289,17.405,7.77,38.85,7.77s38.85-3.481,38.85-7.77"/>
+<text transform="matrix(1 0 0 1 290.6333 111.2031)" fill="#435152" font-family="Proxima Nova" font-weight="bold" font-size="14">PHP</text>
+<line fill="none" stroke="#E1EBEF" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" x1="193.7" y1="104.5" x2="256.8" y2="104.5"/>
+<path fill="#E1EBEF" d="M264.8,104.5l-8-3v6L264.8,104.5z"/>
+<path fill="none" stroke="#E1EBEF" stroke-miterlimit="10" d="M264.8,104.5l-8-3v6L264.8,104.5z"/>
+<line fill="none" stroke="#E1EBEF" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" x1="342.5" y1="104.5" x2="389.6" y2="104.5"/>
+<path fill="#E1EBEF" d="M397.6,104.5l-8-3v6L397.6,104.5z"/>
+<path fill="none" stroke="#E1EBEF" stroke-miterlimit="10" d="M397.6,104.5l-8-3v6L397.6,104.5z"/>
+</svg>
