@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8">
 
-    <title>reveal.js - The HTML Presentation Framework</title>
+    <title>Drupal 8 Module Development: The Crash Course</title>
 
     <meta name="description" content="A framework for easily creating beautiful presentations using HTML">
     <meta name="author" content="Hakim El Hattab">
@@ -35,7 +35,7 @@
       <!-- Any section element inside of this container is displayed as a slide -->
       <div class="slides">
         <section>
-          <h1>Drupal 8 Module Development</h1>
+          <h2>Drupal 8 Module Development</h2>
           <h3>The Crash Course</h3>
           <p>
             <small>Presented by <a href="http://www.palantir.net/">Larry Garfield</a> / <a href="http://twitter.com/hakimel">@Palantir</a></small>
@@ -512,16 +512,61 @@ class MyControllers {
         </section>
 
         <section>
+          <section>
+            <h2>The task</h2>
+            <pre style="text-algn: left;">
+As a college campus
+I want to show a blast message on my site
+So that I can keep the campus notified in an emergency</pre>
+            <ul>
+              <li class="fragment">Emergency admin != block admin</li>
+              <li class="fragment">Also trigger by low-temperature warning</li>
+            </ul>
+          </section>
+          <section>
+            <h2>The parts</h2>
+            <ul>
+              <li class="fragment">Emergency block</li>
+              <li class="fragment">Config form</li>
+              <li class="fragment">Status page</li>
+              <li class="fragment">Emergency status data</li>
+              <li class="fragment">Weather config form</li>
+              <li class="fragment">Weather detection</li>
+            </ul>
+          </section>
+          <section>
+            <h2>The tools</h2>
+            <ul>
+              <li class="fragment">Block plugins</li>
+              <li class="fragment">Page controller</li>
+              <li class="fragment">Forms</li>
+              <li class="fragment">State API</li>
+              <li class="fragment">Configuration API</li>
+              <li class="fragment">Services</li>
+              <li class="fragment">Twig</li>
+            </ul>
+          </section>
+          <section>
+            <h2>The watch word</h2>
+            <h1 class="fragment">Loose coupling</h1>
+          </section>
+        </section>
+        <section>
+          <h1>Live demo!</h1>
+          <h3 class="fragment">Please pardon the dust</h3>
+        </section>
+        <section>
           <h2>Larry Garfield</h2>
           <p>Senior Architect, <a href="http://www.palantir.net/">Palantir.net</a></p>
           <p>Making the Web a Better Place</p>
           <p>Keep tabs on our work at <a href="http://twitter.com/Palantir">@Palantir</a></p>
+          <p>Want to hear about <a href="http://eepurl.com/ws6uj">what we're doing</a>?</p>
         </section>
       </div>
     </div>
 
     <footer class="palantir-logo">
-      <a href="http://www.palantir.net/contact"><img src="palantir/palantirnet-logo-4c-reversed.svg" alt="Palantir.net logo" /></a>
+      <a href="http://www.palantir.net/"><img src="palantir/palantirnet-logo-4c-reversed.svg" alt="Palantir.net logo" /></a>
     </footer>
 
     <script src="lib/js/head.min.js"></script>
