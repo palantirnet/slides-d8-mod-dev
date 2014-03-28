@@ -35,26 +35,14 @@
       <!-- Any section element inside of this container is displayed as a slide -->
       <div class="slides">
         <section>
-          <h2>Drupal 8 Module Development</h2>
+          <h2>Drupal 8 Module Dev</h2>
           <h3>The Crash Course</h3>
-          <p>
-            <small>Presented by <a href="http://www.palantir.net/">Larry Garfield</a> / <a href="http://twitter.com/hakimel">@Palantir</a></small>
-          </p>
-        </section>
-        <section>
-          <h2><a href="http://twitter.com/Crell">@Crell</a></h2>
-          <img src="palantir/palantirnet-logo-4c-reversed.svg" alt="Palantir.net Pays me!" style="width: 300px; float: right;" />
-          <ul>
-            <li>Senior Architect, <a href="http://www.palantir.net/">Palantir.net</a></li>
-            <li>Drupal 8 Web Services Lead</li>
-            <li>Drupal Representative, <a href="http://www.php-fig.org/">PHP-FIG</a></li>
-            <li>Advisor, Drupal Association</li>
-            <li>Loveable pedant</li>
-          </ul>
+          <p><small>Presented by <a href="http://www.twitter.com/Crell">Larry Garfield</a> / <a href="http://twitter.com/ZenDoodles">Andrea Soper</a> / <a href="http://twitter.com/stevector">Steve Persch</a></small></p>
+          <p><a href="http://www.twitter.com/Palantir"><img src="palantir/palantirnet-logo-4c-reversed.svg" alt="Palantir.net Pays us!" style="width: 300px;" /></a></small></p>
         </section>
         <section>
           <h1>Goals</h1>
-          <h3>SWBAT*</h3>
+          <h3>Students will be able to...</h3>
           <ul>
             <li class="fragment">Trace the path of a Drupal request and response</li>
             <li class="fragment">Create routes and controllers for requests</li>
@@ -83,7 +71,8 @@
             <img src="assets/architecture-httpkernelinterface.svg" class="graphic"/>
           </section>
           <section>
-            <pre class="long_code"><code class="php">interface HttpKernelInterface {
+            <pre class="long_code"><code class="php" data-trim>
+interface HttpKernelInterface {
   const MASTER_REQUEST = 1;
   const SUB_REQUEST = 2;
 
@@ -111,7 +100,8 @@
             <p class="fragment roll-in">(The concept formerly known as page callbacks and now represented by a PHP callable...)</p>
           </section>
           <section>
-            <pre><code class="php">use Symfony\Component\HttpFoundation\Response;
+            <pre><code class="php" data-trim>
+use Symfony\Component\HttpFoundation\Response;
 
 class MyControllers {
 
@@ -122,7 +112,8 @@ class MyControllers {
 </code></pre>
           </section>
           <section>
-            <pre><code class="php">use Symfony\Component\HttpFoundation\Response;
+            <pre><code class="php" data-trim>
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 class MyControllers {
@@ -139,7 +130,8 @@ class MyControllers {
 </code></pre>
           </section>
           <section>
-            <pre><code class="php">use Symfony\Component\HttpFoundation\StreamedResponse;
+            <pre><code class="php" data-trim>
+use Symfony\Component\HttpFoundation\StreamedResponse;
 
 class MyControllers {
 
@@ -160,7 +152,8 @@ class MyControllers {
             </aside>
           </section>
           <section>
-            <pre><code class="php">use Symfony\Component\HttpFoundation\BinaryFileResponse;
+            <pre><code class="php" data-trim>
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 class MyControllers {
 
@@ -181,7 +174,8 @@ class MyControllers {
 
           </section>
           <section>
-            <pre><code class="php">use Symfony\Component\HttpFoundation\Response;
+            <pre><code class="php" data-trim>
+use Symfony\Component\HttpFoundation\Response;
 
 class MyControllers {
 
@@ -196,7 +190,8 @@ class MyControllers {
 </code></pre>
           </section>
           <section>
-            <pre><code class="php">use Symfony\Component\HttpFoundation\Response;
+            <pre><code class="php" data-trim>
+use Symfony\Component\HttpFoundation\Response;
 
 class MyControllers {
 
@@ -218,7 +213,8 @@ class MyControllers {
             </aside>
           </section>
           <section>
-            <pre><code class="php">use Symfony\Component\HttpFoundation\Response;
+            <pre><code class="php" data-trim>
+use Symfony\Component\HttpFoundation\Response;
 
 class MyControllers {
 
@@ -234,7 +230,8 @@ class MyControllers {
 </code></pre>
           </section>
           <section>
-            <pre><code class="php">class MyControllers {
+            <pre><code class="php" data-trim>
+class MyControllers {
 
   public function helloString() {
     return "The view event will turn this into a response.";
@@ -243,7 +240,8 @@ class MyControllers {
 </code></pre>
           </section>
           <section>
-            <pre><code class="php">class MyControllers {
+            <pre><code class="php" data-trim>
+class MyControllers {
 
   public function helloDrupal() {
     return array(
@@ -256,7 +254,8 @@ class MyControllers {
           </section>
           <section>
             <code>/hello/world/{from}/{to}</code>
-            <pre><code class="php">class MyControllers {
+            <pre><code class="php" data-trim>
+class MyControllers {
 
   public function helloDrupal($to, $from, Request $request) {
     return array(
@@ -270,7 +269,8 @@ class MyControllers {
           </section>
           <section>
           <h3>module.routing.yml</h3>
-          <pre><code class="yaml long_code">hello.world:
+          <pre><code class="yaml long_code" data-trim>
+hello.world:
   path: '/hello/world/{from}/{to}'
   defaults:
     _content: '\Drupal\mymodule\Controller\HelloController::helloWorld'
@@ -325,15 +325,32 @@ So that I can keep the campus notified in an emergency</pre>
         <section>
           <h1>Live demo!</h1>
           <h3 class="fragment">Please pardon the dust</h3>
-          <p class="fragment"><a href="https://github.com/palantirnet/emergency_block">Code</a> temporarily available</p>
+          <p class="fragment">Follow along at home:<br /><a href="https://github.com/palantirnet/emergency_block">https://github.com/palantirnet/emergency_block</a></p>
         </section>
         <section>
-          <h2>Larry Garfield</h2>
-          <p>Senior Architect, <a href="http://www.palantir.net/">Palantir.net</a></p>
-          <p>Making the Web a Better Place</p>
-          <p>Keep tabs on our work at <a href="http://twitter.com/Palantir">@Palantir</a></p>
-          <p>Want to hear about <a href="http://eepurl.com/ws6uj">what we're doing</a>?</p>
-          <p>Come see this session live at <a href="http://2014.midcamp.org/training/introduction-drupal-8-module-development-afternoon-half-day">Midwest Drupal Camp</a></p>
+          <h2>Your mission</h2>
+          <ol>
+            <li class="fragment">Make a block that shows "Happy $day"</li>
+            <li class="fragment">Only show the block between 9-5</li>
+            <li class="fragment">Make a page that shows the open/close time</li>
+            <li class="fragment">Make a config form for the message to show when open/closed</li>
+            <li class="fragment">Make a config form to set open/close time; use it in the page and block</li>
+          </ol>
+          <p class="fragment">For reference:<br /><a href="https://github.com/palantirnet/emergency_block">https://github.com/palantirnet/emergency_block</a></p>
+        </section>
+        <section>
+          <h2><a href="http://www.palantir.net/">Palantir.net</a></h2>
+          <div>
+            <p><strong>Larry Garfield</strong>, Senior Architect</p>
+            <p><strong>Andrea Soper</strong>, Senior Engineer</p>
+            <p><strong>Steve Persch</strong>, Senior Engineer</p>
+          </div>
+
+          <div style="margin-top: 1em;">
+            <p>Making the Web a Better Place</p>
+            <p>Keep tabs on our work at <a href="http://twitter.com/Palantir">@Palantir</a></p>
+            <p>Want to hear about <a href="http://eepurl.com/ws6uj">what we're doing</a>?</p>
+          </div>
         </section>
       </div>
     </div>
