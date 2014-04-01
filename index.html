@@ -141,6 +141,8 @@ class MyControllers {
       echo 'Hello Universe';
       flush();
     });
+
+    return $response;
   }
 }
 </code></pre>
@@ -150,6 +152,35 @@ class MyControllers {
           </section>
           <section>
             <pre><code class="php" data-trim>
+use Symfony\Component\HttpFoundation\StreamedResponse;
+
+class MyControllers {
+
+  public function helloCsv() {
+    $lots_of_data = get_lots_of_data();
+
+    $response = new StreamedResponse();
+    $response->headers->set('Content-Type', 'text/csv');
+
+    $response->setCallback(function() use ($lots_of_data) {
+      foreach ($lots_of_data as $record) {
+        print implode(', ', $record) . PHP_EOL;
+      }
+    });
+
+    return $response;
+  }
+}
+            </code></pre>
+            <aside class="notes">
+              <ul>
+                <li>Tip: Could we combine this with a StreamedResponse to send records on the fly? How?</li>
+              </ul>
+            </aside>
+          </section>
+          <section>
+            <pre><code class="php" data-trim>
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 class MyControllers {
@@ -159,7 +190,7 @@ class MyControllers {
 
     // Do this in settings.php if you know you're on nginx or
     // have the Apache module enabled.
-    $response::trustXSendfileTypeHeader();
+    Response::trustXSendfileTypeHeader();
 
     return $response;
   }
@@ -182,46 +213,6 @@ class MyControllers {
     $response = new Response();
     $response->setStatusCode(204);
     return $response;
-  }
-}
-</code></pre>
-          </section>
-          <section>
-            <pre><code class="php" data-trim>
-use Symfony\Component\HttpFoundation\Response;
-
-class MyControllers {
-
-  public function helloCsv() {
-    foreach ($some_data as $record) {
-      $lines[] = implode(', ', $record);
-    }
-
-    $response = new Response(implode("\n", $lines));
-    $response->headers->set('Content-Type', 'text/csv');
-    return $response;
-  }
-}
-</code></pre>
-            <aside class="notes">
-              <ul>
-                <li>Tip: Could we combine this with a StreamedResponse to send records on the fly? How?</li>
-              </ul>
-            </aside>
-          </section>
-          <section>
-            <pre><code class="php" data-trim>
-use Symfony\Component\HttpFoundation\Response;
-
-class MyControllers {
-
-  public function helloCoffee() {
-    if ($this->isTeapot()) {
-      $response = new Response("Don't put coffee in me", 418);
-      return $response;
-    }
-
-    // ...
   }
 }
 </code></pre>
